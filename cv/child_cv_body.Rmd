@@ -1,0 +1,78 @@
+<!-- Setup and body for CV, common to both formats -->
+
+```{r setup, include=FALSE}
+## NB: CV templates in vitae only work well for pdf OR html...
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(pacman)
+pacman::p_load(
+          'here',
+          'vitae',
+          'tidyverse',
+          'googlesheets4')
+
+## link to google sheet
+cv_sheet = "https://docs.google.com/spreadsheets/d/1z8GmO2Ye1cb9QZRDN6DHVhtChNlR7-Y-DjRtnZnmPr8/edit?usp=sharing"
+
+```
+
+# Education
+
+```{r gdrive-education}
+## importing education info from google sheet
+edu <- googlesheets4::read_sheet(
+                        cv_sheet,
+                        sheet = "education",
+                        col_types = "c")
+
+edu %>%
+  detailed_entries(
+    what=degree,
+    when=year,
+    with=institution,
+    where=where)
+
+```
+
+# Employment
+
+```{r gdrive-experience}
+## importing education info from google sheet
+experience <- googlesheets4::read_sheet(
+                        cv_sheet,
+                        sheet = "experience",
+                        col_types = "c")
+
+experience %>%
+  detailed_entries(
+    what=position,
+    when=year,
+    with=institution,
+    where=where,
+    why=details)
+
+```
+# Publications (peer-reviewed)
+
+```{r publications} 
+## import bib file for publications
+bibliography_entries(here("bib", "fung-pr.bib"), "Publications")
+
+```
+
+
+# Skills and other activities
+
+```{r gdrive-other}
+## importing other info from google sheet
+other <- googlesheets4::read_sheet(
+                               cv_sheet,
+                               sheet = "other",
+                               col_types = "c")
+
+## NB: using reverse order so that `type` shows up first
+other %>%
+  brief_entries(
+    what=desc,
+    when=type)
+
+```

@@ -1,0 +1,21 @@
+---
+name: Juan F.
+surname: Fung
+## position: "Economist"
+## address: "National Institute of Standards and Technology"
+phone: +1 217 417 7068
+www: juanfung.github.io
+email: "juanfung@gmail.com"
+## github: juanfung
+## linkedin: juanffung
+date: "`r format(Sys.time(), '%B %Y')`"
+headcolor: 5A5A5A
+output:
+  vitae::moderncv:
+    theme: banking
+header-includes:
+  \renewcommand*{\labelitemi}{\textcolor{color1}{\rmfamily\textbullet}}
+---
+
+```{r child = "child_cv_body.Rmd"}
+```
