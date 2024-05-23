@@ -29,7 +29,8 @@ edu %>%
     what=degree,
     when=year,
     with=institution,
-    where=where)
+    where=where,
+    why=why)
 
 ```
 
@@ -53,12 +54,39 @@ experience %>%
 ```
 # Publications (peer-reviewed)
 
-```{r publications} 
+```{r pubs-pr} 
 ## import bib file for publications
 bibliography_entries(here("bib", "fung-pr.bib"), "Publications")
 
 ```
 
+# Publications (other)
+
+```{r pubs-other} 
+## import bib file for publications
+bibliography_entries(here("bib", "fung-other.bib"), "Publications")
+
+```
+
+
+# Leadership
+
+
+```{r gdrive-leadership}
+## importing other info from google sheet
+other <- googlesheets4::read_sheet(
+                               cv_sheet,
+                               sheet = "leadership",
+                               col_types = "c")
+
+## NB: using reverse order so that `type` shows up first
+other %>%
+  brief_entries(
+    what=desc,
+    when=what,
+    with=when)
+
+```
 
 # Skills and other activities
 
