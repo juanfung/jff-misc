@@ -6,7 +6,7 @@ surname: Fung
 phone: +1 217 417 7068
 www: juanfung.github.io
 email: "juanfung@gmail.com"
-## github: juanfung
+github: github.com/juanfung
 ## linkedin: juanffung
 date: "`r format(Sys.time(), '%B %Y')`"
 headcolor: 5A5A5A
@@ -17,5 +17,5 @@ header-includes:
   \renewcommand*{\labelitemi}{\textcolor{color1}{\rmfamily\textbullet}}
 ---
 
-```{r child = "child_cv_body.Rmd"}
+```{r child = "child_cv_body.Rmd", eval=TRUE}
 ```

@@ -13,17 +13,38 @@ pacman::p_load(
 ## link to google sheet
 cv_sheet = "https://docs.google.com/spreadsheets/d/1z8GmO2Ye1cb9QZRDN6DHVhtChNlR7-Y-DjRtnZnmPr8/edit?usp=sharing"
 
-```
 
-# Education
-
-```{r gdrive-education}
+## load data
 ## importing education info from google sheet
 edu <- googlesheets4::read_sheet(
                         cv_sheet,
                         sheet = "education",
                         col_types = "c")
 
+
+## importing employment info from google sheet
+experience <- googlesheets4::read_sheet(
+                               cv_sheet,
+                               sheet = "experience",
+                               col_types = "c")
+
+## importing other info from google sheet
+leadership <- googlesheets4::read_sheet(
+                          cv_sheet,
+                          sheet = "leadership",
+                          col_types = "c")
+
+## importing other info from google sheet
+other <- googlesheets4::read_sheet(
+                               cv_sheet,
+                               sheet = "other",
+                               col_types = "c")
+
+```
+
+# Education
+
+```{r gdrive-education}
 edu %>%
   detailed_entries(
     what=degree,
@@ -37,12 +58,6 @@ edu %>%
 # Employment
 
 ```{r gdrive-experience}
-## importing education info from google sheet
-experience <- googlesheets4::read_sheet(
-                        cv_sheet,
-                        sheet = "experience",
-                        col_types = "c")
-
 experience %>%
   detailed_entries(
     what=position,
@@ -52,6 +67,7 @@ experience %>%
     why=details)
 
 ```
+
 # Publications (peer-reviewed)
 
 ```{r pubs-pr} 
@@ -69,34 +85,23 @@ bibliography_entries(here("bib", "fung-other.bib"), "Publications")
 ```
 
 
-# Leadership
+<!-- # Leadership -->
 
 
-```{r gdrive-leadership}
-## importing other info from google sheet
-other <- googlesheets4::read_sheet(
-                               cv_sheet,
-                               sheet = "leadership",
-                               col_types = "c")
+<!-- ```{r gdrive-leadership} -->
+<!-- ## NB: using reverse order so that `type` shows up first -->
+<!-- leadership %>% -->
+<!--   brief_entries( -->
+<!--     what=desc, -->
+<!--     when=what, -->
+<!--     with=when) -->
 
-## NB: using reverse order so that `type` shows up first
-other %>%
-  brief_entries(
-    what=desc,
-    when=what,
-    with=when)
+<!-- ``` -->
 
-```
 
-# Skills and other activities
+# Leadership, activities, and other skills
 
 ```{r gdrive-other}
-## importing other info from google sheet
-other <- googlesheets4::read_sheet(
-                               cv_sheet,
-                               sheet = "other",
-                               col_types = "c")
-
 ## NB: using reverse order so that `type` shows up first
 other %>%
   brief_entries(
