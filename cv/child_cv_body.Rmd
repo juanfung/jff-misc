@@ -70,7 +70,7 @@ experience %>%
 
 # Publications (peer-reviewed)
 
-```{r pubs-pr} 
+```{r pubs-pr}
 ## import bib file for publications
 bibliography_entries(here("bib", "fung-pr.bib"), "Publications")
 
@@ -78,7 +78,7 @@ bibliography_entries(here("bib", "fung-pr.bib"), "Publications")
 
 # Publications (other)
 
-```{r pubs-other} 
+```{r pubs-other}
 ## import bib file for publications
 bibliography_entries(here("bib", "fung-other.bib"), "Publications")
 
